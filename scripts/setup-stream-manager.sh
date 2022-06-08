@@ -7,13 +7,13 @@ fi
 
 cd /usr/local
 
-server_file=setup-files/red5pro-server.zip
+server_file=red5-setup/files/red5pro-server.zip
 if [[ ! -f "$server_file" ]]; then
   echo "ERROR: You must upload the $(pwd)/${server_file} file."
   exit 1
 fi
 
-terraform_file="setup-files/terraform-cloud-controller-${RED5_VERSION}.jar"
+terraform_file="red5-setup/files/terraform-cloud-controller-${RED5_VERSION}.jar"
 if [[ ! -f "$terraform_file" ]]; then
   echo "ERROR: You must upload the $(pwd)/${terraform_file} file."
   exit 1
@@ -41,5 +41,5 @@ rm conf/autoscale.xml plugins/red5pro-autoscale-plugin-* \
    plugins/red5pro-webrtc-plugin-* plugins/inspector.jar \
    plugins/red5pro-restreamer-plugin-* plugins/red5pro-mpegts-plugin-* \
    plugins/red5pro-socialpusher-plugin-* 
-rm -rf webapps/inspector webapps/bandwidthdetection webapps/template 
+rm -rf webapps/inspector webapps/bandwidthdetection webapps/template
 
