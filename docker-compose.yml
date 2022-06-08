@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  red5:
+    image: red5
+    container_name: red5
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - ./setup.sh:/usr/local/setup.sh
+    tmpfs:
+      - /tmp
+      - /run
+      - /run/lock
