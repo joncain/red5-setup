@@ -5,8 +5,11 @@ services:
     container_name: red5
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
-      - ./setup.sh:/usr/local/setup.sh
+      - ./files:/usr/local/red5-setup/files
+      - ./scripts:/usr/local/red5-setup/scripts
     tmpfs:
       - /tmp
       - /run
       - /run/lock
+    environment:
+      - RED5_VERSION=9.3.0
