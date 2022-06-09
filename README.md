@@ -82,7 +82,7 @@ for more information.
 
 ### Configure Droplet
 
-SSH to droplet and run the following commands
+- SSH to droplet and run the following commands
 
 ```bash
 git clone https://github.com/joncain/red5-setup.git /usr/local/red5-setup 
@@ -92,13 +92,13 @@ git clone https://github.com/joncain/red5-setup.git /usr/local/red5-setup
 /usr/local/red5-setup/scripts/setup-base.sh 
 ```
 
-SCP install files to the instance
+- SCP install files to the instance
 
 ```bash
 scp ./terraform-service.zip ./red5pro-server.zip ./terraform-cloud-controller-9.3.0.jar root@<droplet-ip-address>:/usr/local/red5-setup/files/ 
 ```
 
-Turn off Droplet
+- Turn off Droplet
 
 ### Create Snapshot
 
@@ -121,19 +121,19 @@ See the [Red 5 documentation](https://www.red5pro.com/docs/autoscale/digital-oce
 
 See the [Red 5 documentation](https://www.red5pro.com/docs/autoscale/digital-ocean/07-configure-terraform-server/) for more information.
 
-SSH to the server and run the following commands. This script is interactive and will prompt you for configuration values.
+- SSH to the server and run the following commands. This script is interactive and will prompt you for configuration values.
 
 ```bash
 /usr/local/red5-setup/scripts/setup-terraform.sh 
 ```
 
-Start the service
+- Start the service
 
 ```bash
 systemctl start red5proterraform 
 ```
 
-Test the service: [http://droplet-ip-address:8083/terraform/test?accessToken=<api.accessToken>]()
+- Test the service: [http://droplet-ip-address:8083/terraform/test?accessToken=<api.accessToken>]()
 
 ## Stream Manager
 
@@ -146,32 +146,31 @@ This is the red5pro-base droplet that was created in a previous step. See the [R
 
 ### Configure Stream Manager
 
-SSH to the server and run the following commands. This script is interactive and will prompt you for configuration values.
+- SSH to the server and run the following commands. This script is interactive and will prompt you for configuration values.
 
 ```bash
 /usr/local/red5-setup/scripts/setup-stream-manager.sh 
 ```
 
-Edit `/usr/local/red5pro/webapps/streammanager/WEB-INF/applicationContext.xml`
+- Edit `/usr/local/red5pro/webapps/streammanager/WEB-INF/applicationContext.xml`
 
-- Locate the Terraform Cloud controller bean and uncomment it
-- Comment out the default controller bean
-- See the [Red 5 documentation](https://www.red5pro.com/docs/autoscale/digital-ocean/08-configure-stream-manager-instance/#import-and-activate-the-terraform-cloud-controller) for more information
+  - Locate the Terraform Cloud controller bean and uncomment it
+  - Comment out the default controller bean
+  - See the [Red 5 documentation](https://www.red5pro.com/docs/autoscale/digital-ocean/08-configure-stream-manager-instance/#import-and-activate-the-terraform-cloud-controller) for more information
 
-Edit `webapps/streammanager/WEB-INF/web.xml`
+- Edit `webapps/streammanager/WEB-INF/web.xml`
+  - Uncomment the “CorsFilter” filter
+  - See the [Red 5 documentation](https://www.red5pro.com/docs/autoscale/stream-manager-cors/solution) for more information.
 
-- Uncomment the “CorsFilter” filter
-- See the [Red 5 documentation](https://www.red5pro.com/docs/autoscale/stream-manager-cors/solution) for more information.
+- Add the droplet as a trusted source in the MySQL server
 
-Add the droplet as a trusted source in the MySQL server
-
-Start the service
+- Start the service
 
 ```bash
 systemctl start red5pro 
 ```
 
-Test the service: [http://droplet-ip-address:5080]()
+- Test the service: [http://droplet-ip-address:5080]()
 
 ## Create Node Droplet
 
@@ -188,27 +187,23 @@ See the [Red 5 documentation](https://www.red5pro.com/docs/autoscale/digital-oce
 
 ### Configure Droplet
 
-SSH to the server and run the following commands. This script is interactive and will prompt you for configuration values.
+- SSH to the server and run the following commands. This script is interactive and will prompt you for configuration values.
 
 ```bash
 /usr/local/red5-setup/scripts/setup-node.sh 
 ```
 
-Edit `red5pro/conf/autoscale.xml`
+- Edit `red5pro/conf/autoscale.xml`
+  - See the [Red 5 documentation](https://www.red5pro.com/docs/autoscale/digital-ocean/10-prepare-node-droplet/#configure-autoscaling-on-the-instance) for details
 
-- See the [Red 5 documentation](https://www.red5pro.com/docs/autoscale/digital-ocean/10-prepare-node-droplet/#configure-autoscaling-on-the-instance) for details
+- Edit `red5pro/conf/cluster.xml`
+  - See the [Red 5 documentation](https://www.red5pro.com/docs/autoscale/digital-ocean/10-prepare-node-droplet/#set-a-unique-cluster-password) for details
 
-Edit `red5pro/conf/cluster.xml`
+- Edit `red5pro/webapps/live/WEB-INF/red5-web.xml`
+  - uncomment the “roundTripValidator” bean
 
-- See the [Red 5 documentation](https://www.red5pro.com/docs/autoscale/digital-ocean/10-prepare-node-droplet/#set-a-unique-cluster-password) for details
-
-Edit `red5pro/webapps/live/WEB-INF/red5-web.xml`
-
-- Uncomment the “roundTripValidator” bean
-
-Edit `red5pro/conf/red5-common.xml`
-
-- Set the "writerPostProcessors" value
+- Edit `red5pro/conf/red5-common.xml`
+  - Set the "writerPostProcessors" value.
 
 ```
 <bean id="flv.impl" class="org.red5.io.flv.impl.FLV"> 
@@ -223,23 +218,22 @@ Edit `red5pro/conf/red5-common.xml`
 </bean> 
 ```
 
-Edit `webapps/live/WEB-INF/red5-web.xml`
-
-- Uncomment the following line
+- Edit `webapps/live/WEB-INF/red5-web.xml`
+  - Uncomment the "streamFilenameGenerator" line.
 
 ```bash
 <bean id="streamFilenameGenerator" class="com.red5pro.media.storage.digitalocean.DOFilenameGenerator"/> 
 ```
 
-Start the service
+- Start the service
 
 ```bash
 systemctl start red5pro 
 ```
 
-Test the service: [http://droplet-ip-address:5080]()
+- Test the service: [http://droplet-ip-address:5080]()
 
-Turn off Droplet
+- Turn off Droplet
 
 ### Create Node Image
 
