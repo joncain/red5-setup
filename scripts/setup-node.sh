@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source /usr/local/red5-setup/scripts/functions.sh
+
 cd /usr/local
 
 server_file=red5-setup/files/red5pro-server.zip
@@ -26,3 +28,9 @@ server.host=yechr6si61.execute-api.us-west-2.amazonaws.com
 server.port=443
 server.protocol=https://
 EOF
+
+# Interactively edit red5pro/conf/cloudstorage-plugin.properties file
+echo "Let's edit the red5pro/conf/cloudstorage-plugin.properties file"
+edit_config "red5pro/conf/cloudstorage-plugin.properties"
+
+echo "Done"

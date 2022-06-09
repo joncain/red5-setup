@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source /usr/local/red5-setup/scripts/functions.sh
+
 if [[ $RED5_VERSION = '' ]]; then
   echo -n "Please enter the Red5 version:"
   read RED5_VERSION
@@ -43,3 +45,8 @@ rm conf/autoscale.xml plugins/red5pro-autoscale-plugin-* \
    plugins/red5pro-socialpusher-plugin-* 
 rm -rf webapps/inspector webapps/bandwidthdetection webapps/template
 
+# Interactively edit webapps/streammanager/WEB-INF/red5-web.properties file
+echo "Let's edit the webapps/streammanager/WEB-INF/red5-web.properties file"
+edit_config "webapps/streammanager/WEB-INF/red5-web.properties"
+
+echo "Done"
