@@ -233,7 +233,7 @@ systemctl start red5pro
 
 - Test the service: [http://droplet-ip-address:5080]()
 
-- Turn off Droplet
+- Turn off droplet
 
 ### Create Node Image
 
