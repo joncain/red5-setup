@@ -48,6 +48,7 @@ Hosted Zones
 ## Create Firewalls
 
 See the [Red 5 documentation](https://www.red5pro.com/docs/installation/installation/do-install/#optional---firewall) for more information.
+
 ### red5-sm-inbound-ports
 
 - Inbound Ports
@@ -108,7 +109,7 @@ Create a Snapshot of the droplet and name it: red5pro-base
 ## Create Terraform Droplet
 
 See the [Red 5 documentation](https://www.red5pro.com/docs/installation/auto-digital-ocean/05-create-sm-and-terraform-instances/) for more information.
-                              
+
 ### Droplet Properties
 
 - Snapshot: red5pro-base
@@ -239,3 +240,39 @@ systemctl start red5pro
 ### Create Node Image
 
 See the [Red 5 documentation](https://www.red5pro.com/docs/installation/auto-digital-ocean/11-create-node-image/) for more information.
+
+## Create Scale Policy
+
+Use the [red5-cli](https://github.com/iCentris/red5-cli) to create a scale policy. This is only required for a fresh install.
+
+```bash
+red5 create-policy
+```
+
+## Create Launch Config
+
+Use the [red5-cli](https://github.com/iCentris/red5-cli) to create a launch config. This is only required for a fresh install.
+
+```bash
+red5 create-config
+```
+
+## Create Node Group
+
+Use the [red5-cli](https://github.com/iCentris/red5-cli) to create a node group. This is only required for a fresh install.
+
+```bash
+red5 create-group
+```
+
+## Launch Origin
+
+Use the [red5-cli](https://github.com/iCentris/red5-cli) to launch. This is only required for a fresh install.
+
+```bash
+red5 launch-origin
+```
+
+## Add Stream Manager to Load Balancer
+
+After adding the stream manager droplet to the load balancer, and verifying the load balancer is up. Test the actual url for the system: <https://red5.vibeoffice.com>
