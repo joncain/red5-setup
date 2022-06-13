@@ -41,6 +41,18 @@ server.port=443
 server.protocol=https://
 EOF
 
+# Activate autoscale
+# 1. Format XML without indents
+# 2. strip out remaining tabs and new lines
+# 3. Uncomment
+# 4. Format with tab indentation
+# 5. Write out the file
+xmlstarlet format -n red5pro/conf/autoscale.xml \
+| tr -d '\n\t' \
+| sed -e 's/<property name="active" value="false"\/>/<property name="active" value="true"\/>/' -e 's/http:\/\/0.0.0.0:5080/https:\/\/red5.vibeoffice.com/' \
+| xmlstarlet format -t \
+| sponge red5pro/conf/autoscale.xml
+
 # Interactively edit red5pro/conf/cloudstorage-plugin.properties file
 echo "Let's edit the red5pro/conf/cloudstorage-plugin.properties file"
 edit_config "red5pro/conf/cloudstorage-plugin.properties"
