@@ -135,7 +135,7 @@ See the [Red 5 documentation](https://www.red5pro.com/docs/installation/auto-dig
 systemctl start red5proterraform 
 ```
 
-- Test the service: [http://droplet-ip-address:8083/terraform/test?accessToken=<api.accessToken>]()
+- Test the service: [http://droplet-ip-address:8083/terraform/test?accessToken=<api.accessToken>](http://droplet-ip-address:8083/terraform/test?accessToken=<api.accessToken>)
 
 ## Stream Manager
 
