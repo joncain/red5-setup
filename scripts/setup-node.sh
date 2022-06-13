@@ -57,4 +57,10 @@ xmlstarlet format -n red5pro/conf/autoscale.xml \
 echo "Let's edit the red5pro/conf/cloudstorage-plugin.properties file"
 edit_config "red5pro/conf/cloudstorage-plugin.properties"
 
+# Prompt for the cluster.password
+echo -n "cluster.password (changeme):"
+read -r cluster_password
+# Set the cluster password
+sed "s/changeme/${cluster_password}/" red5pro/conf/cluster.xml | sponge red5pro/conf/cluster.xml 
+
 echo "Done"

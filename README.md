@@ -185,9 +185,6 @@ See the [Red 5 documentation](https://www.red5pro.com/docs/installation/auto-dig
 /usr/local/red5-setup/scripts/setup-node.sh 
 ```
 
-- Edit `red5pro/conf/cluster.xml`
-  - See the [Red 5 documentation](https://www.red5pro.com/docs/installation/auto-digital-ocean/10-prepare-node-droplet/#set-a-unique-cluster-password) for details
-
 - Start the service
 
 ```bash
