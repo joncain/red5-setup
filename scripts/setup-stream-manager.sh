@@ -37,6 +37,8 @@ echo "Copying Terraform controller (${terraform_file})"
 cp "${terraform_file}" red5pro/webapps/streammanager/WEB-INF/lib
 
 # Comment out the default controller bean
+# Uncomment TerraformCloudController bean
+# https://www.red5pro.com/docs/installation/auto-digital-ocean/08-configure-stream-manager-instance/#import-and-activate-the-terraform-cloud-controller
 # 1. Format XML without indents
 # 2. strip out remaining tabs and new lines
 # 3. Comment bean
@@ -44,20 +46,9 @@ cp "${terraform_file}" red5pro/webapps/streammanager/WEB-INF/lib
 # 5. Write out the file
 xmlstarlet format -n red5pro/webapps/streammanager/WEB-INF/applicationContext.xml \
 | tr -d '\t\n' \
-| sed 's/\(<bean id="apiBridge" class="com.red5pro.services.streammanager.cloud.sample.component.DummyCloudController" init-method="initialize"><\/bean>\)/<!-- \1 -->/' \
-| xmlstarlet format -t \
-| sponge red5pro/webapps/streammanager/WEB-INF/applicationContext.xml
-
-# Uncomment TerraformCloudController bean
-# https://www.red5pro.com/docs/installation/auto-digital-ocean/08-configure-stream-manager-instance/#import-and-activate-the-terraform-cloud-controller
-# 1. Format XML without indents
-# 2. strip out remaining tabs and new lines
-# 3. Uncomment bean
-# 4. Format with tab indentation
-# 5. Write out the file
-xmlstarlet format -n red5pro/webapps/streammanager/WEB-INF/applicationContext.xml \
-| tr -d '\t\n' \
-| sed 's/<!-- \(<bean id="apiBridge" class="com.red5pro.services.terraform.component.TerraformCloudController" init-method="initialize">.*<\/bean>\) -->/\1/' \
+| sed \
+-e 's/\(<bean id="apiBridge" class="com.red5pro.services.streammanager.cloud.sample.component.DummyCloudController" init-method="initialize"><\/bean>\)/<!-- \1 -->/' \
+-e 's/<!-- \(<bean id="apiBridge" class="com.red5pro.services.terraform.component.TerraformCloudController" init-method="initialize">.*<\/bean>\) -->/\1/' \
 | xmlstarlet format -t \
 | sponge red5pro/webapps/streammanager/WEB-INF/applicationContext.xml
 
