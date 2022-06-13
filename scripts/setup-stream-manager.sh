@@ -57,7 +57,7 @@ xmlstarlet format -n red5pro/webapps/streammanager/WEB-INF/applicationContext.xm
 # 2. strip out remaining tabs and new lines
 # 3. Uncomment
 # 4. Format with tab indentation
-xmlstarlet format -n red5pro/webapps/streammanager/WEB-INF/web.xml | tr -d '\n\t' | sed 's/<!-- uncomment to add CorsFilter\(.*\)-->/\1/' | xmlstarlet format | sponge red5pro/webapps/streammanager/WEB-INF/web.xml
+xmlstarlet format -n red5pro/webapps/streammanager/WEB-INF/web.xml | tr -d '\n\t' | sed 's/<!-- uncomment to add CorsFilter\(.*\)-->/\1/' | xmlstarlet format -t | sponge red5pro/webapps/streammanager/WEB-INF/web.xml
 
 # Remove unneccessary files
 echo "Removing unneccessary files"
