@@ -21,12 +21,16 @@ systemctl daemon-reload
 systemctl enable red5pro.service
 
 # Uncomment the roundTripValidator bean
-#
 # 1. Format XML without indents
 # 2. strip out remaining tabs and new lines
 # 3. Uncomment
 # 4. Format with tab indentation
-xmlstarlet format -n red5pro/webapps/live/WEB-INF/red5-web.xml | tr -d '\n\t' | sed 's/<!-- uncomment below for Round Trip Authentication--><!--\(.*\)--><!-- uncomment above for Round Trip Authentication-->/\1/' | xmlstarlet format -t | sponge red5pro/webapps/live/WEB-INF/red5-web.xml
+# 5. Write out the file
+xmlstarlet format -n red5pro/webapps/live/WEB-INF/red5-web.xml \
+| tr -d '\n\t' \
+| sed 's/<!-- uncomment below for Round Trip Authentication--><!--\(.*\)--><!-- uncomment above for Round Trip Authentication-->/\1/' \
+| xmlstarlet format -t \
+| sponge red5pro/webapps/live/WEB-INF/red5-web.xml
 
 cat <<EOF >> red5pro/webapps/live/WEB-INF/red5-web.properties
 # Roundtrip Auth
