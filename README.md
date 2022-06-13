@@ -154,16 +154,6 @@ This is the red5pro-base droplet that was created in a previous step. See the [R
 /usr/local/red5-setup/scripts/setup-stream-manager.sh 
 ```
 
-- Edit `/usr/local/red5pro/webapps/streammanager/WEB-INF/applicationContext.xml`
-
-  - Locate the Terraform Cloud controller bean and uncomment it
-  - Comment out the default controller bean
-  - See the [Red 5 documentation](https://www.red5pro.com/docs/installation/auto-digital-ocean/08-configure-stream-manager-instance/#import-and-activate-the-terraform-cloud-controller) for more information
-
-- Edit `webapps/streammanager/WEB-INF/web.xml`
-  - Uncomment the “CorsFilter” filter
-  - See the [Red 5 documentation](https://www.red5pro.com/docs/installation/stream-manager-cors/solution/) for more information.
-
 - Add the droplet as a trusted source in the MySQL server
 
 - Start the service

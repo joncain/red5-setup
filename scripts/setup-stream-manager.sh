@@ -36,6 +36,29 @@ systemctl enable red5pro.service
 echo "Copying Terraform controller (${terraform_file})"
 cp "${terraform_file}" red5pro/webapps/streammanager/WEB-INF/lib
 
+# Comment out the default controller bean
+# 1. Format XML without indents
+# 2. strip out remaining tabs and new lines
+# 3. Comment bean
+# 4. Format with tab indentation
+xmlstarlet format -n red5pro/webapps/streammanager/WEB-INF/applicationContext.xml | tr -d '\t\n' | sed 's/\(<bean id="apiBridge" class="com.red5pro.services.streammanager.cloud.sample.component.DummyCloudController" init-method="initialize"><\/bean>\)/<!-- \1 -->/' | xmlstarlet format -t | sponge red5pro/webapps/streammanager/WEB-INF/applicationContext.xml
+
+# Uncomment TerraformCloudController bean
+# https://www.red5pro.com/docs/installation/auto-digital-ocean/08-configure-stream-manager-instance/#import-and-activate-the-terraform-cloud-controller
+# 1. Format XML without indents
+# 2. strip out remaining tabs and new lines
+# 3. Uncomment bean
+# 4. Format with tab indentation
+xmlstarlet format -n red5pro/webapps/streammanager/WEB-INF/applicationContext.xml | tr -d '\t\n' | sed 's/<!-- \(<bean id="apiBridge" class="com.red5pro.services.terraform.component.TerraformCloudController" init-method="initialize">.*<\/bean>\) -->/\1/' | xmlstarlet format -t | sponge red5pro/webapps/streammanager/WEB-INF/applicationContext.xml
+
+# Uncomment the “CorsFilter” filter
+# https://www.red5pro.com/docs/installation/stream-manager-cors/solution/
+# 1. Format XML without indents
+# 2. strip out remaining tabs and new lines
+# 3. Uncomment
+# 4. Format with tab indentation
+xmlstarlet format -n red5pro/webapps/streammanager/WEB-INF/web.xml | tr -d '\n\t' | sed 's/<!-- uncomment to add CorsFilter\(.*\)-->/\1/' | xmlstarlet format | sponge red5pro/webapps/streammanager/WEB-INF/web.xml
+
 # Remove unneccessary files
 echo "Removing unneccessary files"
 cd red5pro 
