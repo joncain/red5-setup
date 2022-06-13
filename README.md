@@ -191,32 +191,6 @@ See the [Red 5 documentation](https://www.red5pro.com/docs/installation/auto-dig
 - Edit `red5pro/conf/cluster.xml`
   - See the [Red 5 documentation](https://www.red5pro.com/docs/installation/auto-digital-ocean/10-prepare-node-droplet/#set-a-unique-cluster-password) for details
 
-- Edit `red5pro/webapps/live/WEB-INF/red5-web.xml`
-  - uncomment the “roundTripValidator” bean
-
-- Edit `red5pro/conf/red5-common.xml`
-  - Set the "writerPostProcessors" value.
-
-```
-<bean id="flv.impl" class="org.red5.io.flv.impl.FLV"> 
-  <property name="cache"> 
-    <ref bean="object.cache"/> 
-  </property> 
-  <property name="writerPostProcessors"> 
-    <set> 
-      <value>com.red5pro.media.processor.DOUploaderPostProcessor</value> 
-    </set> 
-  </property> 
-</bean> 
-```
-
-- Edit `webapps/live/WEB-INF/red5-web.xml`
-  - Uncomment the "streamFilenameGenerator" line.
-
-```bash
-<bean id="streamFilenameGenerator" class="com.red5pro.media.storage.digitalocean.DOFilenameGenerator"/> 
-```
-
 - Start the service
 
 ```bash

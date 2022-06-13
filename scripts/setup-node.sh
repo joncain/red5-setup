@@ -20,6 +20,14 @@ chmod 644 /lib/systemd/system/red5pro.service
 systemctl daemon-reload
 systemctl enable red5pro.service
 
+# Uncomment the roundTripValidator bean
+#
+# 1. Format XML without indents
+# 2. strip out remaining tabs and new lines
+# 3. Uncomment
+# 4. Format with tab indentation
+xmlstarlet format -n red5pro/webapps/live/WEB-INF/red5-web.xml | tr -d '\n\t' | sed 's/<!-- uncomment below for Round Trip Authentication--><!--\(.*\)--><!-- uncomment above for Round Trip Authentication-->/\1/' | xmlstarlet format -t | sponge red5pro/webapps/live/WEB-INF/red5-web.xml
+
 cat <<EOF >> red5pro/webapps/live/WEB-INF/red5-web.properties
 # Roundtrip Auth
 server.validateCredentialsEndPoint=/prod/verify
@@ -28,14 +36,6 @@ server.host=yechr6si61.execute-api.us-west-2.amazonaws.com
 server.port=443
 server.protocol=https://
 EOF
-
-# Uncomment the roundTripValidator bean
-#
-# 1. Format XML without indents
-# 2. strip out remaining tabs and new lines
-# 3. Uncomment
-# 4. Format with tab indentation
-xmlstarlet format -n red5pro/webapps/live/WEB-INF/red5-web.xml | tr -d '\n\t' | sed 's/<!-- uncomment below for Round Trip Authentication--><!--\(.*\)--><!-- uncomment above for Round Trip Authentication-->/\1/' | xmlstarlet format -t | sponge red5pro/webapps/live/WEB-INF/red5-web.xml
 
 # Interactively edit red5pro/conf/cloudstorage-plugin.properties file
 echo "Let's edit the red5pro/conf/cloudstorage-plugin.properties file"
