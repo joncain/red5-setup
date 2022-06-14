@@ -120,7 +120,7 @@ See the [Red 5 documentation](https://www.red5pro.com/docs/installation/auto-dig
 - Region: sfo3
 - VPC: default-sfo3
 - SSH Key: red5pro-icentris
-- Name: red5pro-terraform-93
+- Name: red5pro-terraform-x.x.x
 
 ### Configure Terraform
 
