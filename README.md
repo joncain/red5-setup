@@ -1,13 +1,13 @@
 # Red 5 Ecosystem Setup (Digital Ocean)
 
-This is a document to pull together the Red 5 documentation that is specifically needed for our setup. This document was created using Red 5 version 9.3.0.
+This is a document to pull together the Red 5 documentation that is specifically needed for our setup.
 
 See the [Red 5 documentation](https://www.red5pro.com/docs/installation/installation/do-install/) for more information.
 
 ## [Download](https://account.red5pro.com/downloads) Latest Install Files
 
 - Red 5 Pro Server
-- Terraform Autoscale controller 9.3.0 for Digital Ocean
+- Terraform Autoscale controller x.x.x for Digital Ocean
 - Terraform Binary and Configuration Files for Terraform Server for Digital Ocean
 
 ## Configuration Values
@@ -100,7 +100,7 @@ git clone https://github.com/joncain/red5-setup.git /usr/local/red5-setup
 - SCP install files to the instance
 
 ```bash
-scp ./terraform-service.zip ./red5pro-server.zip ./terraform-cloud-controller-9.3.0.jar root@<droplet-ip-address>:/usr/local/red5-setup/files/ 
+scp ./terraform-service.zip ./red5pro-server.zip ./terraform-cloud-controller-x.x.x.jar root@<droplet-ip-address>:/usr/local/red5-setup/files/ 
 ```
 
 - Turn off Droplet
