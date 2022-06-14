@@ -144,11 +144,10 @@ systemctl start red5proterraform
 
 This is the red5pro-base droplet that was created in a previous step. See the [Red 5 documentation](https://www.red5pro.com/docs/installation/auto-digital-ocean/08-configure-stream-manager-instance/) for more information.
 
-### Rename Droplet
-- red5pro-streammanager-x.x.x
 
 ### Activate Droplet
 
+- Rename the droplet to: red5pro-streammanager-x.x.x
 - Add the droplet to the red5-sm-inbound-ports firewall
 - Turn on droplet
 
@@ -204,6 +203,9 @@ systemctl start red5pro
 ### Create Node Image
 
 See the [Red 5 documentation](https://www.red5pro.com/docs/installation/auto-digital-ocean/11-create-node-image/) for more information.
+
+### Destroy the droplet
+This node droplet can now be destroyed.
 
 ## Create Scale Policy
 
