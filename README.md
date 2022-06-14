@@ -168,7 +168,7 @@ This is the red5pro-base droplet that was created in a previous step. See the [R
 systemctl start red5pro 
 ```
 
-- Test the service: [http://droplet-ip-address:5080]()
+- Test the service: [http://droplet-ip-address:5080](http://droplet-ip-address:5080)
 
 ## Create Node Droplet
 
