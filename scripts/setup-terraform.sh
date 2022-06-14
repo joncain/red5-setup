@@ -11,7 +11,7 @@ fi
 
 # Unzip the server install file
 echo "Unzipping ${server_file}"
-unzip $server_file
+unzip -qo $server_file
 
 # Set up the service
 echo "Setting up the red5proterraform service"
@@ -23,7 +23,7 @@ systemctl daemon-reload
 systemctl enable red5proterraform.service 
 
 # Interactively edit red5service/application.properties file
-echo "Let's edit the red5service/application.properties file"
+echo "Let's edit the red5service/application.properties file..."
 edit_config "red5service/application.properties"
 
 echo "Done"
