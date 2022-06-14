@@ -10,6 +10,9 @@ See the [Red 5 documentation](https://www.red5pro.com/docs/installation/installa
 - Terraform Autoscale controller 9.3.0 for Digital Ocean
 - Terraform Binary and Configuration Files for Terraform Server for Digital Ocean
 
+## Configuration Values
+You will need a copy of the Digital Ocean Checklist provided by Red5 to obtain the configuration values.
+
 ## Load Balancer
 
 Create a load balancer in Digital Ocean. See the [Red 5 documentation](https://www.red5pro.com/docs/installation/auto-digital-ocean/09-optional-load-balance-stream-managers/#create-load-balancer) for more information.
