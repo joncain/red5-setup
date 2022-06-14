@@ -144,6 +144,9 @@ systemctl start red5proterraform
 
 This is the red5pro-base droplet that was created in a previous step. See the [Red 5 documentation](https://www.red5pro.com/docs/installation/auto-digital-ocean/08-configure-stream-manager-instance/) for more information.
 
+### Rename Droplet
+- red5pro-streammanager-x.x.x
+
 ### Activate Droplet
 
 - Add the droplet to the red5-sm-inbound-ports firewall
