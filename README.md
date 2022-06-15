@@ -21,10 +21,7 @@ You will need a copy of the Digital Ocean Checklist provided by Red5 to obtain t
 |api.accessToken|API token|
 |cloud.do_api_token|Token value|
 |cloud.do_ssh_key_name|SSH KeyPair Name|
-|instancecontroller.instanceNamePrefix|n/a|
 |cluster.password|Red5 Pro cluster password|
-|terra.instanceName|n/a|
-|terra.host|n/a|
 |terra.port|server.port|
 |terra.token|api.accessToken (terra.token)|
 |serverapi.accessToken|API token|
