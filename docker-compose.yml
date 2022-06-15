@@ -12,4 +12,4 @@ services:
       - /run
       - /run/lock
     environment:
-      - RED5_VERSION=9.3.0
+      - RED5_VERSION=10.4.0
