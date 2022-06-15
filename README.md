@@ -153,12 +153,6 @@ See the [Red 5 documentation](https://www.red5pro.com/docs/installation/auto-dig
 /usr/local/red5-setup/scripts/setup-terraform.sh 
 ```
 
-- Start the service
-
-```bash
-systemctl start red5proterraform 
-```
-
 - Test the service: [http://droplet-ip-address:8083/terraform/test?accessToken=<api.accessToken>](http://droplet-ip-address:8083/terraform/test?accessToken=<api.accessToken>)
 
 ## Stream Manager
@@ -181,12 +175,6 @@ This is the red5pro-base droplet that was created in a previous step. See the [R
 
 - Add the droplet as a trusted source in the MySQL server
 
-- Start the service
-
-```bash
-systemctl start red5pro 
-```
-
 - Test the service: [http://droplet-ip-address:5080](http://droplet-ip-address:5080)
 
 ## Create Node Droplet
@@ -208,12 +196,6 @@ See the [Red 5 documentation](https://www.red5pro.com/docs/installation/auto-dig
 
 ```bash
 /usr/local/red5-setup/scripts/setup-node.sh 
-```
-
-- Start the service
-
-```bash
-systemctl start red5pro 
 ```
 
 - Test the service: [http://droplet-ip-address:5080](http://droplet-ip-address:5080)

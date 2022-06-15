@@ -64,6 +64,9 @@ rm -rf webapps/inspector webapps/bandwidthdetection webapps/template
 echo "Let's edit the webapps/streammanager/WEB-INF/red5-web.properties file..."
 edit_config "webapps/streammanager/WEB-INF/red5-web.properties"
 
+# Start the service
+systemctl start red5pro
+
 # Provide a test link.
 ip=$(host myip.opendns.com resolver1.opendns.com | tail -1 | awk '{ print $(NF)}')
 echo "Test link: http://${ip}:5080"

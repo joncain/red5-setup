@@ -47,6 +47,9 @@ read -r cluster_password
 # Set the cluster password
 sed "s/changeme/${cluster_password}/" red5pro/conf/cluster.xml | sponge red5pro/conf/cluster.xml 
 
+# Start the service
+systemctl start red5pro
+
 # Provide a test link.
 ip=$(host myip.opendns.com resolver1.opendns.com | tail -1 | awk '{ print $(NF)}')
 echo "Test link: http://${ip}:5080"

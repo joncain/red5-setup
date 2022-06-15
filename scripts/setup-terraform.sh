@@ -26,6 +26,9 @@ systemctl enable red5proterraform.service
 echo "Let's edit the red5service/application.properties file..."
 edit_config "red5service/application.properties"
 
+# Start the service
+systemctl start red5proterraform
+
 # Provide a test link. The access token will only work if the env var
 # was provided in the .env file (highly recommended).
 ip=$(host myip.opendns.com resolver1.opendns.com | tail -1 | awk '{ print $(NF)}')
