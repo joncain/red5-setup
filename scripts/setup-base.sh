@@ -8,7 +8,7 @@ if [[ $skip_java = "false" ]]; then
   apt-get install -y openjdk-11-jdk unzip libva2 \
                      libva-drm2 libva-x11-2 libvdpau1 \
                      jsvc ntp ffmpeg git vim moreutils \
-                     xmlstarlet
+                     xmlstarlet host
 else
   echo "Skipping Java install"
 fi

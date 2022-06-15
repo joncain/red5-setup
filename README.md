@@ -11,7 +11,29 @@ See the [Red 5 documentation](https://www.red5pro.com/docs/installation/installa
 - Terraform Binary and Configuration Files for Terraform Server for Digital Ocean
 
 ## Configuration Values
-You will need a copy of the Digital Ocean Checklist provided by Red5 to obtain the configuration values.
+
+You will need a copy of the Digital Ocean Checklist provided by Red5 to obtain the configuration values. The key names in the configuration files do not neccessarily match the Checklist document.
+
+### Key map
+
+|Config Key|Document Key|
+|---|---|
+|api.accessToken|API token|
+|cloud.do_api_token|Token value|
+|cloud.do_ssh_key_name|SSH KeyPair Name|
+|instancecontroller.instanceNamePrefix|n/a|
+|cluster.password|Red5 Pro cluster password|
+|terra.instanceName|n/a|
+|terra.host|n/a|
+|terra.port|server.port|
+|terra.token|api.accessToken (terra.token)|
+|serverapi.accessToken|API token|
+|rest.administratorToken|API token|
+|proxy.enabled|proxy.enabled|
+
+### .env
+
+**IMPORTANT NOTE:** Set these values in the `scripts/.env` file to make your life easier. The interactive script will pull values from that file.
 
 ## Load Balancer
 
@@ -83,7 +105,7 @@ for more information.
 - Region: sfo3
 - VPC: default-sfo3
 - SSH Key: red5pro-icentris
-- Hostname: red5pro-base
+- Hostname: red5pro-base-x.x.x
 
 ### Configure Droplet
 
@@ -103,11 +125,13 @@ git clone https://github.com/joncain/red5-setup.git /usr/local/red5-setup
 scp ./terraform-service.zip ./red5pro-server.zip ./terraform-cloud-controller-x.x.x.jar root@<droplet-ip-address>:/usr/local/red5-setup/files/ 
 ```
 
+- Add configuration values to the `/usr/local/red5-setup/scripts/.env` file. See the [Configuration Values](#configuration-values) section for details.
+
 - Turn off Droplet
 
 ### Create Snapshot
 
-Create a Snapshot of the droplet and name it: red5pro-base
+Create a Snapshot of the droplet and name it: red5pro-base-x.x.x
 
 ## Create Terraform Droplet
 
@@ -115,7 +139,7 @@ See the [Red 5 documentation](https://www.red5pro.com/docs/installation/auto-dig
 
 ### Droplet Properties
 
-- Snapshot: red5pro-base
+- Snapshot: red5pro-base-x.x.x
 - Plan: CPU Optimized; 4 GB / 2 CPUs / 25 GB Disk
 - Region: sfo3
 - VPC: default-sfo3
@@ -143,7 +167,6 @@ systemctl start red5proterraform
 ## Stream Manager
 
 This is the red5pro-base droplet that was created in a previous step. See the [Red 5 documentation](https://www.red5pro.com/docs/installation/auto-digital-ocean/08-configure-stream-manager-instance/) for more information.
-
 
 ### Activate Droplet
 
@@ -175,7 +198,7 @@ See the [Red 5 documentation](https://www.red5pro.com/docs/installation/auto-dig
 
 ### Droplet Properties
 
-- Snapshot: red5pro-base
+- Snapshot: red5pro-base-x.x.x
 - Plan: CPU Optimized; 4 GB / 2 CPUs / 25 GB Disk
 - Region: sfo3
 - VPC: default-sfo3
@@ -196,7 +219,7 @@ See the [Red 5 documentation](https://www.red5pro.com/docs/installation/auto-dig
 systemctl start red5pro 
 ```
 
-- Test the service: [http://droplet-ip-address:5080]()
+- Test the service: [http://droplet-ip-address:5080](http://droplet-ip-address:5080)
 
 - Turn off droplet
 
@@ -205,6 +228,7 @@ systemctl start red5pro
 See the [Red 5 documentation](https://www.red5pro.com/docs/installation/auto-digital-ocean/11-create-node-image/) for more information.
 
 ### Destroy the droplet
+
 This node droplet can now be destroyed.
 
 ## Create Scale Policy

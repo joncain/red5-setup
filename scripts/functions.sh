@@ -6,10 +6,10 @@ function prompt_key() {
   # intentional as they are commented out in their current state and will be uncommented in their
   # final state.
   keys=(
-    "api.accessToken" "cloud.do_api_token" "cloud.do_ssh_key_name" "config.dbHost" "config.dbPort" "config.dbUser" "config.dbPass"
-    "instancecontroller.instanceNamePrefix" "cluster.password" "#terra.regionNames" "#terra.instanceName" "#terra.host" "#terra.port"
-    "#terra.token" "serverapi.accessToken" "rest.administratorToken" "proxy.enabled" 
-    "services" "ffmpeg.path" "do.access.key" "do.secret.access.key" "do.bucket.name" "do.bucket.location"
+    "api.accessToken" "cloud.do_api_token" "cloud.do_ssh_key_name" "config.dbHost" "config.dbPort"
+    "config.dbUser" "config.dbPass" "instancecontroller.instanceNamePrefix" "cluster.password" "#terra.regionNames"
+    "#terra.instanceName" "#terra.host" "#terra.port" "#terra.token" "serverapi.accessToken"
+    "rest.administratorToken" "proxy.enabled"
   )
   for k in "${keys[@]}"; do
     if [[ "${1}" = "${k}" ]]; then
@@ -20,6 +20,8 @@ function prompt_key() {
 }
 
 function edit_config() {
+  # Load the .env file
+  export $(cat "$(current_dir)/.env" | xargs)
   file="$1"
 
   properties=()
@@ -30,6 +32,10 @@ function edit_config() {
   while IFS='=' read -r key val <&3; do
     # Only prompt for specific keys.
     if [[ $(prompt_key "${key}") = "true" ]]; then
+      # If we have a value from the environment, use it.
+      envval=$(get_env_var "${key}")
+      val=${envval:-$val}
+
       echo -n "${key} (${val}):"
 
       read -r newval
@@ -52,8 +58,6 @@ function edit_config() {
     fi
   done 3< $file
 
-  echo "RESULTS----------------"
-
   for prop in "${properties[@]}"; do
     printf '%s\n' "${prop}"
   done > $file
@@ -73,4 +77,25 @@ function exec_sed() {
   | sed "$sed_command" \
   | xmlstarlet format -t \
   | sponge $file
+}
+
+function current_dir() {
+  SCRIPT_PATH=`realpath "$0"`
+  SCRIPT_DIR=`dirname "$SCRIPT_PATH"`
+  echo $SCRIPT_DIR
+}
+
+function get_env_var() {
+  key="$1"
+
+  # Conform the key to the env format.
+  # 1) Replace . with _
+  # 2) Remove comment #
+  # E.g.,
+  # do.my.keyFoo -> do_my_keyFoo
+  # some.commented.key -> some_commented_key
+  envkey="${key//./_}"
+  envkey="${envkey/\#/}"
+  envval=$(printenv "r5_${envkey}")
+  echo $envval
 }

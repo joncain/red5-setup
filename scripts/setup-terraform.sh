@@ -26,4 +26,8 @@ systemctl enable red5proterraform.service
 echo "Let's edit the red5service/application.properties file..."
 edit_config "red5service/application.properties"
 
+# Provide a test link. The access token will only work if the env var
+# was provided in the .env file (highly recommended).
+ip=$(host myip.opendns.com resolver1.opendns.com | tail -1 | awk '{ print $(NF)}')
+echo "Test link: http://${ip}:8083/terraform/test?accessToken=${r5_api_accessToken}"
 echo "Done"

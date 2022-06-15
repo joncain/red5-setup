@@ -15,17 +15,14 @@ echo "Unzipping ${server_file}"
 unzip -qod red5pro $server_file
 
 # Set up the service
-cp /usr/local/red5pro/red5pro.service /lib/systemd/system/
+cp /usr/local/red5pro/red5pro.service /lib/systemd/system
 chmod 644 /lib/systemd/system/red5pro.service
 systemctl daemon-reload
 systemctl enable red5pro.service
 
 # Uncomment the roundTripValidator bean
 exec_sed red5pro/webapps/live/WEB-INF/red5-web.xml \
-| tr -d '\n\t' \
-| sed 's/<!-- uncomment below for Round Trip Authentication--><!--\(.*\)--><!-- uncomment above for Round Trip Authentication-->/\1/' \
-| xmlstarlet format -t \
-| sponge red5pro/webapps/live/WEB-INF/red5-web.xml
+'s/<!-- uncomment below for Round Trip Authentication--><!--\(.*\)--><!-- uncomment above for Round Trip Authentication-->/\1/'
 
 cat <<EOF >> red5pro/webapps/live/WEB-INF/red5-web.properties
 # Roundtrip Auth
@@ -45,9 +42,13 @@ echo "Let's edit the red5pro/conf/cloudstorage-plugin.properties file..."
 edit_config "red5pro/conf/cloudstorage-plugin.properties"
 
 # Prompt for the cluster.password
-echo -n "cluster.password (changeme):"
+echo -n "cluster.password (${r5_cluster_password:-changeme}):"
 read -r cluster_password
 # Set the cluster password
 sed "s/changeme/${cluster_password}/" red5pro/conf/cluster.xml | sponge red5pro/conf/cluster.xml 
+
+# Provide a test link.
+ip=$(host myip.opendns.com resolver1.opendns.com | tail -1 | awk '{ print $(NF)}')
+echo "Test link: http://${ip}:5080"
 
 echo "Done"
