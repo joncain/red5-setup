@@ -35,7 +35,11 @@ EOF
 
 # Activate autoscale
 exec_sed red5pro/conf/autoscale.xml \
-'s/<property name="active" value="false"\/>/<property name="active" value="true"\/>/' -e 's/http:\/\/0.0.0.0:5080/https:\/\/red5.vibeoffice.com/'
+'s/<property name="active" value="false"\/>/<property name="active" value="true"\/>/'
+
+# Set stream manager url
+exec_sed red5pro/conf/autoscale.xml \
+'s/http:\/\/0.0.0.0:5080/https:\/\/red5.vibeoffice.com/'
 
 # Interactively edit red5pro/conf/cloudstorage-plugin.properties file
 echo "Let's edit the red5pro/conf/cloudstorage-plugin.properties file..."
