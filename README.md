@@ -148,6 +148,7 @@ See the [Red 5 documentation](https://www.red5pro.com/docs/installation/auto-dig
 See the [Red 5 documentation](https://www.red5pro.com/docs/installation/auto-digital-ocean/07-configure-terraform-server/) for more information.
 
 - Add droplet to the red5-terraform firewall
+- Add the droplet as a trusted source in the MySQL server
 - SSH to the server and run the following commands. This script is interactive and will prompt you for configuration values.
 
 ```bash
