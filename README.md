@@ -163,6 +163,7 @@ This is the red5pro-base droplet that was created in a previous step. See the [R
 
 - Rename the droplet to: red5pro-streammanager-x.x.x
 - Add the droplet to the red5-sm-inbound-ports firewall
+- Add the droplet as a trusted source in the MySQL server
 - Turn on droplet
 
 ### Configure Stream Manager
@@ -172,8 +173,6 @@ This is the red5pro-base droplet that was created in a previous step. See the [R
 ```bash
 /usr/local/red5-setup/scripts/setup-stream-manager.sh 
 ```
-
-- Add the droplet as a trusted source in the MySQL server
 
 - Test the service: [http://droplet-ip-address:5080](http://droplet-ip-address:5080)
 
