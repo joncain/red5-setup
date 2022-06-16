@@ -27,6 +27,7 @@ echo "Let's edit the red5service/application.properties file..."
 edit_config "red5service/application.properties"
 
 # Start the service
+echo "Starting service"
 systemctl start red5proterraform
 
 # Provide a test link. The access token will only work if the env var

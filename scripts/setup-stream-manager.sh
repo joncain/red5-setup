@@ -65,6 +65,7 @@ echo "Let's edit the webapps/streammanager/WEB-INF/red5-web.properties file..."
 edit_config "webapps/streammanager/WEB-INF/red5-web.properties"
 
 # Start the service
+echo "Starting service"
 systemctl start red5pro
 
 # Provide a test link.

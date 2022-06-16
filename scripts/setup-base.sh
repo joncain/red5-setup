@@ -13,7 +13,6 @@ else
   echo "Skipping Java install"
 fi
 
-
 echo "Modifying conf files"
 
 echo "session required pam_limits.so" >> /etc/pam.d/common-session

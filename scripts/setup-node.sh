@@ -48,6 +48,7 @@ read -r cluster_password
 sed "s/changeme/${cluster_password}/" red5pro/conf/cluster.xml | sponge red5pro/conf/cluster.xml 
 
 # Start the service
+echo "Starting service"
 systemctl start red5pro
 
 # Provide a test link.
