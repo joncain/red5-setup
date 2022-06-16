@@ -51,8 +51,8 @@ exec_sed red5pro/webapps/streammanager/WEB-INF/applicationContext.xml \
 exec_sed red5pro/webapps/streammanager/WEB-INF/web.xml \
 's/<!-- uncomment to add CorsFilter\(.*\)-->/\1/'
 
-# Remove unneccessary files
-echo "Removing unneccessary files"
+# Remove unnecessary files
+echo "Removing unnecessary files"
 cd red5pro 
 rm conf/autoscale.xml plugins/red5pro-autoscale-plugin-* \
    plugins/red5pro-webrtc-plugin-* plugins/inspector.jar \

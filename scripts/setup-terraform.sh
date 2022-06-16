@@ -22,6 +22,10 @@ chmod 644 /lib/systemd/system/red5proterraform.service
 systemctl daemon-reload 
 systemctl enable red5proterraform.service 
 
+# Remove unnecessary files
+echo "Removing unnecessary files"
+rm /usr/local/red5service/cloud_controller_azure.tf /usr/local/red5service/cloud_controller_linode.tf /usr/local/red5service/cloud_controller_vsphere_dhcp.tf /usr/local/red5service/cloud_controller_vsphere_static_ips.tf
+
 # Interactively edit red5service/application.properties file
 echo "Let's edit the red5service/application.properties file..."
 edit_config "red5service/application.properties"
