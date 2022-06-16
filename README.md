@@ -219,7 +219,7 @@ red5 create-policy
 
 ## Create Launch Config
 
-Use the [red5-cli](https://github.com/iCentris/red5-cli) to create a launch config. This is only required for a fresh install.
+Use the [red5-cli](https://github.com/iCentris/red5-cli) to create a launch config. If the Red5 version has changed, you will need to adjust the request template.
 
 ```bash
 red5 create-config
@@ -227,7 +227,7 @@ red5 create-config
 
 ## Create Node Group
 
-Use the [red5-cli](https://github.com/iCentris/red5-cli) to create a node group. This is only required for a fresh install.
+Use the [red5-cli](https://github.com/iCentris/red5-cli) to create a node group. If the Red5 version has changed, you will need to adjust the request template.
 
 ```bash
 red5 create-group
@@ -235,7 +235,7 @@ red5 create-group
 
 ## Launch Origin
 
-Use the [red5-cli](https://github.com/iCentris/red5-cli) to launch. This is only required for a fresh install.
+Use the [red5-cli](https://github.com/iCentris/red5-cli) to launch.
 
 ```bash
 red5 launch-origin
