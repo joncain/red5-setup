@@ -210,6 +210,10 @@ See the [Red 5 documentation](https://www.red5pro.com/docs/installation/auto-dig
 
 This node droplet can now be destroyed.
 
+## Add Stream Manager to Load Balancer
+
+Add the stream manager droplet to the load balancer. You will want to disable/remove any previous droplets from the load balancer. Verify the load balancer is up: https://red5.vibeoffice.com
+
 ## Create Scale Policy
 
 Use the [red5-cli](https://github.com/iCentris/red5-cli) to create a scale policy. This is only required for a fresh install.
@@ -241,7 +245,3 @@ Use the [red5-cli](https://github.com/iCentris/red5-cli) to launch.
 ```bash
 red5 launch-origin
 ```
-
-## Add Stream Manager to Load Balancer
-
-After adding the stream manager droplet to the load balancer, and verifying the load balancer is up. Test the actual url for the system: <https://red5.vibeoffice.com>
