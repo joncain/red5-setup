@@ -1,2 +1,2 @@
-files/*.jar
-files/*.zip
+files/
+scripts/.env-local
